@@ -22,4 +22,5 @@ DOMAIN-SUFFIX,bingapis.com
 DOMAIN-SUFFIX,anthropic.com
 DOMAIN-SUFFIX,claude.ai
 DOMAIN,bard.google.com
-DOMAIN,cdn.oaistatic.com
+DOMAIN-SUFFIX,oaistatic.com
+DOMAIN-SUFFIX,oaiusercontent.com
