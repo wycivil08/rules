@@ -1,0 +1,47 @@
+dns:
+  enable: true
+  listen: 0.0.0.0:12353
+  ipv6: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  default-nameserver:
+    - 223.5.5.5
+    - 1.12.12.12
+  nameserver:
+    - "https://dns.alidns.com/dns-query"
+    - "https://doh.pub/dns-query"
+  fake-ip-filter:
+    - "+.lan"
+    - "+.gstatic.com"
+    - "connect.rom.miui.com"
+    - "localhost.sec.qq.com"
+    - "localhost.ptlogin2.qq.com"
+    - "+.linksys.com"
+    - "+.pool.ntp.org"
+    - "hiwifi.com"
+    - "leike.cc"
+    - "miwifi.com"
+    - "my.router"
+    - "peiluyou.com"
+    - "phicomm.me"
+    - "router.ctc"
+    - "routerlogin.com"
+    - "tendawifi.com"
+    - "tplinkwifi.net"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "zte.home"
+    - "+.stun.*.*"
+    - "+.stun.*.*.*"
+    - "+.stun.*.*.*.*"
+    - "+.stun.*.*.*.*.*"
+    - "lens.l.google.com"
+    - "+.srv.nintendo.net"
+    - "+.stun.playstation.net"
+    - "xbox.*.*.microsoft.com"
+    - "+.xboxlive.com"
+    - "+.mcdn.bilivideo.cn"
+hosts:
+  bigota.d.miui.com: 123.6.13.6
+  hugeota.d.miui.com: 123.6.13.6
