@@ -48,5 +48,5 @@ dns:
     - "+.xboxlive.com"
     - "+.mcdn.bilivideo.cn"
 hosts:
-  "bigota.d.miui.com": 123.6.13.6
-  "hugeota.d.miui.com": 123.6.13.6
+  "bigota.d.miui.com": 183.136.207.132
+  "hugeota.d.miui.com": 183.136.207.132
