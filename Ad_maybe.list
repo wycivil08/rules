@@ -1,10 +1,14 @@
 DOMAIN,browser.sentry-cdn.com
+DOMAIN,analyticsengine.s3.amazonaws.com
+DOMAIN,analytics.s3.amazonaws.com
 DOMAIN,ads.pinterest.com
 DOMAIN,app.getsentry.com
 DOMAIN,udc.yahoo.com
 DOMAIN,udcm.yahoo.com
 DOMAIN,appmetrica.yandex.ru
+DOMAIN,adfstat.yandex.ru
 DOMAIN,metrika.yandex.ru
+DOMAIN,adfox.yandex.ru
 DOMAIN,business.samsungusa.com
 DOMAIN,securemetrics.apple.com
 DOMAIN,aeventlog.beacon.qq.com
