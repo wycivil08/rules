@@ -12,10 +12,22 @@ dns:
   use-hosts: true
   default-nameserver:
     - 223.5.5.5
-    - 1.12.12.12
+    - 119.29.29.29
   nameserver:
     - "https://dns.alidns.com/dns-query"
     - "https://doh.pub/dns-query"
+  fallback:
+    - "https://cloudflare-dns.com/dns-query"
+    - "https://dns.google/dns-query"
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
   fake-ip-filter:
     - "+.lan"
     - "+.gstatic.com"
@@ -34,6 +46,7 @@ dns:
     - "routerlogin.com"
     - "tendawifi.com"
     - "tplinkwifi.net"
+    - "tplogin.cn"
     - "+.msftconnecttest.com"
     - "+.msftncsi.com"
     - "zte.home"
@@ -47,3 +60,6 @@ dns:
     - "xbox.*.*.microsoft.com"
     - "+.xboxlive.com"
     - "+.mcdn.bilivideo.cn"
+hosts:
+  "bigota.d.miui.com": 123.6.13.6
+  "hugeota.d.miui.com": 123.6.13.6
