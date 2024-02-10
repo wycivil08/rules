@@ -23,4 +23,4 @@ DOMAIN-SUFFIX,bing.com
 DOMAIN-SUFFIX,bingapis.com
 DOMAIN-SUFFIX,anthropic.com
 DOMAIN-SUFFIX,claude.ai
-DOMAIN,bard.google.com
+DOMAIN,gemini.google.com
