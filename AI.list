@@ -69,9 +69,11 @@ DOMAIN,production-openaicom-storage.azureedge.net
 # Claude & Anthropic
 #########################################
 DOMAIN,cdn.usefathom.com
-DOMAIN-SUFFIX,anthropic.com
 DOMAIN-SUFFIX,claude.ai
-
+DOMAIN-SUFFIX,anthropic.com
+DOMAIN-SUFFIX,intercomcdn.com
+DOMAIN-KEYWORD,claude
+DOMAIN-KEYWORD,anthropic
 #########################################
 # Google AI Services
 #########################################
