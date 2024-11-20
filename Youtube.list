@@ -1,13 +1,13 @@
 ; Custom YouTube Rule for Chromecast
 [custom]
-; Name: YouTube Chromecast, use in addition to public youtube list.
+; Name: YouTube Chromecast
 ; Author: Custom
 ; Updated: 2024-11-20
 
 ; IP addresses for YouTube service on Chromecast
-IP-CIDR,172.175.234.12/32,no-resolve
-IP-CIDR,172.64.148.171/32,no-resolve
+IP-CIDR,216.239.32.223/32,no-resolve
+IP-CIDR,216.239.36.223/32,no-resolve
 
 ; IP prefix for potential future changes
-IP-CIDR,172.175.0.0/16,no-resolve
-IP-CIDR,172.64.0.0/16,no-resolve
+IP-CIDR,216.239.32.0/20,no-resolve
+IP-CIDR,216.239.36.0/16,no-resolve
