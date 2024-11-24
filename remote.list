@@ -6,3 +6,4 @@ DOMAIN-SUFFIX,teamviewer.com
 DOMAIN-SUFFIX,teamviewer.us
 DOMAIN,client-teamviewer-com.trafficmanager.net
 DOMAIN,teamviewer.com.cdn.cloudflare.net
+IP-CIDR,47.84.0.0/24,no-resolve
