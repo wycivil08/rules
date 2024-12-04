@@ -76,8 +76,8 @@ dns:
   fallback:
     - https://1.1.1.1/dns-query            # Cloudflare DoH as fallback
     - https://dns.google/dns-query         # Google DoH as fallback
-    - tls://dns.rubyfish.cn:853            # Rubyfish DNS
-    - tls://dns.nextdns.io:853             # NextDNS
+    # - tls://dns.rubyfish.cn:853            # Rubyfish DNS
+    # - tls://dns.nextdns.io:853             # NextDNS
   fallback-filter:
     geoip: true
     geoip-code: CN
