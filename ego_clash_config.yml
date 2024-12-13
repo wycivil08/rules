@@ -29,7 +29,7 @@ mode: Rule
 log-level: info
 
 # Clash 的 RESTful API
-# external-controller: '127.0.0.1:9090'
+external-controller: '0.0.0.0:9090'
 
 # 您可以将静态网页资源（如 clash-dashboard）放置在一个目录中，clash 将会服务于 `RESTful API/ui`
 # 参数应填写配置目录的相对路径或绝对路径。
@@ -93,32 +93,68 @@ log-level: info
 #     geosite:cn: https://dns.pub/dns-query  # Use Aliyun's DoH for Chinese sites
 
 
-# # ref:https://linux.do/t/topic/155075
 dns:
   enable: true
+  prefer-h3: true
+  listen: 0.0.0.0:1053
   ipv6: true
   default-nameserver:
     - 223.5.5.5
-    - 223.6.6.6
-  nameserver:
-    - 1.1.1.1
-    - 8.8.8.8
-  fallback:
-    - tls://1.1.1.1:853
-    - tls://8.8.8.8:853
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
-  # enhanced-mode: fake-ip
+  enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - '*.lan'
-    - 'localhost.ptlogin2.qq.com'
-    - 'dns.msftncsi.com'
-    - 'www.msftncsi.com'
-    - 'www.msftconnecttest.com'
+    - localhost.ptlogin2.qq.com
+  nameserver-policy:
+    'www.baidu.com': '114.114.114.114'
+    '+.internal.crop.com': '10.0.0.1'
+    'geosite:cn': https://doh.pub/dns-query
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - tls://8.8.4.4
+    - tls://1.1.1.1
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    geosite:
+      - gfw
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
+      
+# # ref:https://linux.do/t/topic/155075
+# dns:
+#   enable: true
+#   ipv6: true
+#   default-nameserver:
+#     - 223.5.5.5
+#     - 223.6.6.6
+#   nameserver:
+#     - 1.1.1.1
+#     - 8.8.8.8
+#   fallback:
+#     - tls://1.1.1.1:853
+#     - tls://8.8.8.8:853
+#   fallback-filter:
+#     geoip: true
+#     geoip-code: CN
+#     ipcidr:
+#       - 240.0.0.0/4
+#   # enhanced-mode: fake-ip
+#   fake-ip-range: 198.18.0.1/16
+#   fake-ip-filter:
+#     - '*.lan'
+#     - 'localhost.ptlogin2.qq.com'
+#     - 'dns.msftncsi.com'
+#     - 'www.msftncsi.com'
+#     - 'www.msftconnecttest.com'
 
 
 # dns:
