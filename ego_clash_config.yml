@@ -63,21 +63,17 @@ experimental:
 dns:
   enable: true
   ipv6: false
-  default-nameserver:
-    - 223.5.5.5          # AliDNS
-    - 223.6.6.6          # AliDNS
-    - 119.29.29.29       # Tencent DNS
-    - 114.114.114.114    # 114DNS
   nameserver:
-    - 1.1.1.1 # Cloudflare via Proxy
-    - 8.8.8.8 # Google DNS via Proxy
-    - https://cloudflare-dns.com/dns-query  # Cloudflare DoH
-    - https://dns.google/dns-query         # Google DoH
+    - tls://1.1.1.1
+    - tls://8.8.8.8
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+  default-nameserver:
+    - tls://1.12.12.12
+    - 119.29.29.29
   fallback:
-    - https://1.1.1.1/dns-query            # Cloudflare DoH as fallback
-    - https://dns.google/dns-query         # Google DoH as fallback
-    # - tls://dns.rubyfish.cn:853            # Rubyfish DNS
-    # - tls://dns.nextdns.io:853             # NextDNS
+    - tls://1.1.1.1:853
+    - tls://8.8.8.8:853
   fallback-filter:
     geoip: true
     geoip-code: CN
