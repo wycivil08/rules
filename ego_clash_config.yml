@@ -59,132 +59,42 @@ external-controller: '0.0.0.0:9090'
 #   '*.clash.dev': 127.0.0.1
 #   'alpha.clash.dev': '::1'
 
-# update 1126: custom modification with improvement: 
-# dns:
-#   enable: true
-#   ipv6: false
-#   nameserver:
-#     - tls://1.1.1.1
-#     - tls://8.8.8.8
-#     - https://cloudflare-dns.com/dns-query
-#     - https://dns.google/dns-query
-#   default-nameserver:
-#     - tls://1.12.12.12
-#     - 119.29.29.29
-#   fallback:
-#     - tls://1.1.1.1:853
-#     - tls://8.8.8.8:853
-#   fallback-filter:
-#     geoip: true
-#     geoip-code: CN
-#     ipcidr:
-#       - 240.0.0.0/4                        # Local-only IP ranges
-#   enhanced-mode: fake-ip                   # Clash DNS interception
-#   fake-ip-range: 198.18.0.1/16             # Reserved IP range for fake-IP mode
-#   fake-ip-filter:
-#     - "*.lan"                              # Local domains
-#     - connectivitycheck.gstatic.com        # Android connectivity check
-#     - www.google.com                       # Google services
-#     - dns.msftncsi.com                     # Microsoft connectivity check
-#     - www.msftncsi.com
-#     - www.msftconnecttest.com
-#   timeout: 5                               # Reduce DNS query timeout
-#   nameserver-policy:
-#     geosite:cn: https://dns.pub/dns-query  # Use Aliyun's DoH for Chinese sites
-
+# update 1214: custom modification with improvement: 
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: 0.0.0.0:9090
 
 dns:
   enable: true
-  prefer-h3: true
-  listen: 0.0.0.0:1053
   ipv6: true
-  default-nameserver:
-    - 223.5.5.5
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-    - '*.lan'
-    - localhost.ptlogin2.qq.com
-  nameserver-policy:
-    'www.baidu.com': '114.114.114.114'
-    '+.internal.crop.com': '10.0.0.1'
-    'geosite:cn': https://doh.pub/dns-query
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-  fallback:
-    - tls://8.8.4.4
-    - tls://1.1.1.1
+    - "*.lan"
+    - "*.local"
+    - "*.internal"
+  listen: 0.0.0.0:7874
+  prefer-h3: true
+  default-nameserver:
+    - 1.1.1.1   # Cloudflare DNS
+    - 8.8.8.8   # Google DNS
   proxy-server-nameserver:
-    - https://doh.pub/dns-query
+    - https://doh.pub/dns-query  # Ensure all queries go through proxy resolver
+  nameserver-policy:
+    geosite:cn: https://doh.pub/dns-query  # Route Chinese domains through proxy server
+  fallback:
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
   fallback-filter:
+    geoip-code: US  # Route DNS through US-based servers
     geoip: true
-    geoip-code: CN
     geosite:
       - gfw
     ipcidr:
       - 240.0.0.0/4
-    domain:
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
-      
-# # ref:https://linux.do/t/topic/155075
-# dns:
-#   enable: true
-#   ipv6: true
-#   default-nameserver:
-#     - 223.5.5.5
-#     - 223.6.6.6
-#   nameserver:
-#     - 1.1.1.1
-#     - 8.8.8.8
-#   fallback:
-#     - tls://1.1.1.1:853
-#     - tls://8.8.8.8:853
-#   fallback-filter:
-#     geoip: true
-#     geoip-code: CN
-#     ipcidr:
-#       - 240.0.0.0/4
-#   # enhanced-mode: fake-ip
-#   fake-ip-range: 198.18.0.1/16
-#   fake-ip-filter:
-#     - '*.lan'
-#     - 'localhost.ptlogin2.qq.com'
-#     - 'dns.msftncsi.com'
-#     - 'www.msftncsi.com'
-#     - 'www.msftconnecttest.com'
-
-
-# dns:
-#   enable: true # 是否启用dns false
-#   ipv6: false
-#   listen: 0.0.0.0:53
-#   fake-ip-range: 198.18.0.1/16 #
-#   fake-ip-filter: # fake ip 白名单列表，如果你不知道这个参数的作用，请勿修改
-#      - '*.lan'
-#      - localhost.ptlogin2.qq.com
-#   nameserver:
-#      - 223.5.5.5 # 阿里DNS
-#      - 180.76.76.76 # 百度DNS
-#      - 119.29.29.29 # 腾讯DNS
-#      - 117.50.11.11 # ONE DNS拦截版 恶意网站拦截、广告过滤
-#      - 117.50.10.10 # ONE DNS纯净版 直接返回其真实的响应结果
-#      - 114.114.114.114 # 114DNS
-#   fallback:
-#      - 8.8.8.8 # 谷歌DNS
-#      - 1.1.1.1 # Cloudflare DNS
-#      - tls://dns.rubyfish.cn:853
-#      - tls://1.0.0.1:853
-#      - tls://dns.google:853
-#      - https://dns.rubyfish.cn/dns-query
-#      - https://cloudflare-dns.com/dns-query
-#      - https://dns.google/dns-query
-#   fallback-filter:
-#      geoip: true # 默认
-#      ipcidr: # 在这个网段内的 IP 地址会被考虑为被污染的 IP
-#        - 240.0.0.0/4
 
 # 1. clash DNS 请求逻辑：
 #   (1) 当访问一个域名时， nameserver 与 fallback 列表内的所有服务器并发请求，得到域名对应的 IP 地址。
