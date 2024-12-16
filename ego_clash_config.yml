@@ -59,35 +59,19 @@ external-controller: '0.0.0.0:9090'
 #   '*.clash.dev': 127.0.0.1
 #   'alpha.clash.dev': '::1'
 
-# update 1214: custom modification with improvement: 
+# update 1216: minimum list.
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: 0.0.0.0:9090
+
 dns:
   enable: true
-  ipv6: true
+  ipv6: false
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - "*.lan"
-    - "*.local"
-    - "*.internal"
-  listen: 0.0.0.0:7874
-  prefer-h3: true
-  default-nameserver:
-    - 1.1.1.1   # Cloudflare DNS
-    - 8.8.8.8   # Google DNS
-  proxy-server-nameserver:
-    - https://doh.pub/dns-query  # Ensure all queries go through proxy resolver
-  nameserver-policy:
-    geosite:cn: https://doh.pub/dns-query  # Route Chinese domains through proxy server
-  fallback:
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
-  fallback-filter:
-    geoip-code: US  # Route DNS through US-based servers
-    geoip: true
-    geosite:
-      - gfw
-    ipcidr:
-      - 240.0.0.0/4
+  listen: 0.0.0.0:1053
 
 # 1. clash DNS 请求逻辑：
 #   (1) 当访问一个域名时， nameserver 与 fallback 列表内的所有服务器并发请求，得到域名对应的 IP 地址。
